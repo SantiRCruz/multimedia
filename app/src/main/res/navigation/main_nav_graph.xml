@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.example.estrellitas.ui.image.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" >
+        <action
+            android:id="@+id/action_imageFragment_to_createImageFragment"
+            app:destination="@id/createImageFragment" />
+        <action
+            android:id="@+id/action_imageFragment_self"
+            app:destination="@id/imageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.example.estrellitas.ui.music.MusicFragment"
+        android:label="fragment_music"
+        tools:layout="@layout/fragment_music" >
+        <action
+            android:id="@+id/action_musicFragment_to_createMusicFragment"
+            app:destination="@id/createMusicFragment" />
+        <action
+            android:id="@+id/action_musicFragment_self"
+            app:destination="@id/musicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.estrellitas.ui.note.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createImageFragment"
+        android:name="com.example.estrellitas.ui.image.CreateImageFragment"
+        android:label="fragment_create_image"
+        tools:layout="@layout/fragment_create_image" />
+    <fragment
+        android:id="@+id/createMusicFragment"
+        android:name="com.example.estrellitas.ui.music.CreateMusicFragment"
+        android:label="fragment_create_music"
+        tools:layout="@layout/fragment_create_music" />
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.example.estrellitas.ui.note.CreateNoteFragment"
+        android:label="fragment_create_note"
+        tools:layout="@layout/fragment_create_note" />
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.estrellitas.ui.note.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <argument
+            android:name="note"
+            app:argType="com.example.estrellitas.data.models.NoteEntity" />
+    </fragment>
+</navigation>
