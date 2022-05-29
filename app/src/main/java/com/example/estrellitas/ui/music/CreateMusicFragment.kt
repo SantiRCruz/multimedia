@@ -34,7 +34,7 @@ import com.example.estrellitas.core.Result
 
 class CreateMusicFragment : Fragment(R.layout.fragment_create_music) {
     private lateinit var binding : FragmentCreateMusicBinding
-    private lateinit var mediaPlayer: MediaPlayer
+    private  var mediaPlayer: MediaPlayer? =null
 
     private val viewModel by viewModels<MusicViewModel> {
         MusicViewModelFactory(
@@ -43,7 +43,6 @@ class CreateMusicFragment : Fragment(R.layout.fragment_create_music) {
             ).MusicDao()
         )
     }
-    private lateinit var mediaRecorder: MediaRecorder
     private var firstTimeSound = 0
     private var uriResult: Uri? = null
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -79,21 +78,23 @@ class CreateMusicFragment : Fragment(R.layout.fragment_create_music) {
 
     private fun clicks() {
         binding.imgBack.setOnClickListener {
-            mediaPlayer.stop()
+            if (mediaPlayer != null){
+                mediaPlayer!!.stop()
+            }
             findNavController().popBackStack()
         }
         binding.imgPlay.setOnClickListener {
             if (firstTimeSound == 0) {
-                mediaPlayer.setDataSource(requireContext(), uriResult!!)
+                mediaPlayer?.setDataSource(requireContext(), uriResult!!)
                 firstTimeSound = 1
             }
-            mediaPlayer.prepare()
-            mediaPlayer.start()
+            mediaPlayer?.prepare()
+            mediaPlayer?.start()
             binding.imgPlay.visibility = View.GONE
             binding.imgStop.visibility = View.VISIBLE
         }
         binding.imgStop.setOnClickListener {
-            mediaPlayer.stop()
+            mediaPlayer?.stop()
             binding.imgPlay.visibility = View.VISIBLE
             binding.imgStop.visibility = View.GONE
         }
